@@ -1,4 +1,4 @@
-name: Build and Deploy to GKE
+name: Deploy to GKE
 
 on:
   push:
@@ -24,7 +24,7 @@ jobs:
       uses: 'google-github-actions/auth@v1'
       with:
         create_credentials_file: true
-        workload_identity_provider: 'projects/573325332123/locations/global/workloadIdentityPools/github-actions-cicd/providers/github'
+        workload_identity_provider: 'projects/573325332123/locations/global/workloadIdentityPools/github-application-live/providers/github-application-live'
         service_account: 'geolocview-serviceaccount@third-nature-400716.iam.gserviceaccount.com'
 
     
