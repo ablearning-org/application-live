@@ -1,0 +1,57 @@
+name: Build and Deploy to GKE
+
+on:
+  push:
+    branches:
+      - main  # or your default branch
+
+jobs:
+  build-and-deploy:
+    permissions:
+      id-token: write
+      contents: read
+
+    runs-on: ubuntu-latest
+    container:
+      image: gcr.io/google.com/cloudsdktool/cloud-sdk:latest
+      options: --entrypoint /bin/bash
+      
+    steps:
+    - uses: actions/checkout@v2
+
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        create_credentials_file: true
+        workload_identity_provider: 'projects/573325332123/locations/global/workloadIdentityPools/github-actions-cicd/providers/github'
+        service_account: 'geolocview-serviceaccount@third-nature-400716.iam.gserviceaccount.com'
+
+    
+    - name: Deploy to GKE
+      run: |
+        gcloud container clusters get-credentials geolocview-cluster-1 --zone us-east1 --project third-nature-400716
+
+    - name: Deploy Backend to GKE
+      run: |
+        kubectl apply -f backend/backend-deployment.yaml
+
+    - name: Deploy Frontend to GKE
+      run: |
+        kubectl apply -f frontend/geolocview/frontend-deployment.yaml
+
+
+    - name: Deploy Frontend Service to GKE
+      run: |
+        kubectl apply -f frontend/geolocview/frontend-service.yaml
+
+
+
+    - name: Deploy Frontend ingress to GKE
+      run: |
+        kubectl apply -f frontend/geolocview/ingress.yaml
+
+    
+
+
+    
