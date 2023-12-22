@@ -19,7 +19,15 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y yamllint
 
       - name: Create custom yamllint configuration
-        run: echo "extends: default\nrules:\n  line-length: disable\n  indentation: disable\n  key-ordering:\n  level: warning\n  empty-lines:\n    level: warning" > .yamllint.yml
+        run: |
+          echo "extends: default" > .yamllint.yml
+          echo "rules:" >> .yamllint.yml
+          echo "  line-length: disable" >> .yamllint.yml
+          echo "  indentation: disable" >> .yamllint.yml
+          echo "  key-ordering:" >> .yamllint.yml
+          echo "    level: warning" >> .yamllint.yml
+          echo "  empty-lines:" >> .yamllint.yml
+          echo "    level: warning" >> .yamllint.yml
 
       - name: Lint YAML files
         run: yamllint -c .yamllint.yml clusters/geolocview-cluster-1
