@@ -1,17 +1,17 @@
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: geolocview
+  name: geolocview-ingress
 spec:
   rules:
-  - host: devopsbootcamp.dev
+  - host: geolocview.example.com
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: frontend-service
+            name: geolocview-service
             port:
-              number: 8080
+              number: 80
+
