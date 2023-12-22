@@ -1,41 +1,26 @@
-name: CI Pipeline with Flux
+name: Lint Deployment Files
 
 on:
   push:
+    paths:
+      - '**.yaml'  # Run this workflow on changes to YAML files
     branches:
-      - main  # or any other branch you use
+      - main
 
 jobs:
-  lint:
+  lint-yaml:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js (if your project is a Node.js project)
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'  # Specify your Node.js version
+      - name: Lint YAML files
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y yamllint
+          yamllint .
 
-    # If your project uses another stack, set it up accordingly
-
-    - name: Install dependencies
-      run: npm install  # or the appropriate command for your project
-
-    - name: Run lint
-      run: npm run lint  # Replace with your lint command
-
-  # This step is optional - only if you want to trigger Flux reconciliation manually
-  # trigger-flux-reconciliation:
-  #   runs-on: ubuntu-latest
-  #   needs: lint  # Ensure this job runs after the lint job
-  #   if: github.ref == 'refs/heads/main'  # Only trigger on main branch
-
-  #   steps:
-  #   - name: Trigger Flux reconciliation
-  #     run: |
-  #       curl -X POST ${{ secrets.FLUX_WEBHOOK_URL }}
 
 
 
