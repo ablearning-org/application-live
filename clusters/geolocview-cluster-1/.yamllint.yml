@@ -6,4 +6,3 @@ rules:
     level: warning
   empty-lines:
     level: warning
-  ...
