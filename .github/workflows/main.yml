@@ -28,27 +28,27 @@ jobs:
         service_account: 'geolocview-serviceaccount@third-nature-400716.iam.gserviceaccount.com'
 
     
-    - name: Deploy to GKE
-      run: |
-        gcloud container clusters get-credentials geolocview-cluster-1 --zone us-east1 --project third-nature-400716
+    # - name: Deploy to GKE
+    #   run: |
+    #     gcloud container clusters get-credentials geolocview-cluster-1 --zone us-east1 --project third-nature-400716
 
-    - name: Deploy Backend to GKE
-      run: |
-        kubectl apply -f backend/backend-deployment.yaml
+    # - name: Deploy Backend to GKE
+    #   run: |
+    #     kubectl apply -f backend/backend-deployment.yaml
 
-    - name: Deploy Frontend to GKE
-      run: |
-        kubectl apply -f frontend/geolocview/frontend-deployment.yaml
-
-
-    - name: Deploy Frontend Service to GKE
-      run: |
-        kubectl apply -f frontend/geolocview/frontend-service.yaml
+    # - name: Deploy Frontend to GKE
+    #   run: |
+    #     kubectl apply -f frontend/geolocview/frontend-deployment.yaml
 
 
-    - name: Deploy Frontend ingress to GKE
-      run: |
-        kubectl apply -f frontend/geolocview/ingress.yaml
+    # - name: Deploy Frontend Service to GKE
+    #   run: |
+    #     kubectl apply -f frontend/geolocview/frontend-service.yaml
+
+
+    # - name: Deploy Frontend ingress to GKE
+    #   run: |
+    #     kubectl apply -f frontend/geolocview/ingress.yaml
 
     
 
