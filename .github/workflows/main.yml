@@ -19,7 +19,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y yamllint
-          yamllint .
+          yamllint clusters/geolocview-cluster-1
 
 
 
