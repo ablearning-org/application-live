@@ -20,17 +20,17 @@ jobs:
 
       - name: Create custom yamllint configuration
         run: |
-          echo "extends: default" > flux-system/yamllint.yml
-          echo "rules:" >> flux-system/yamllint.yml
-          echo "  line-length: disable" >> flux-system/yamllint.yml
-          echo "  indentation: disable" >> flux-system/yamllint.yml
-          echo "  key-ordering:" >> flux-system/yamllint.yml
-          echo "    level: warning" >> flux-system/yamllint.yml
-          echo "  empty-lines:" >> flux-system/yamllint.yml
-          echo "    level: warning" >> flux-system/yamllint.yml
+          echo "extends: default" > flux-system/.yamllint.yml
+          echo "rules:" >> flux-system/.yamllint.yml
+          echo "  line-length: disable" >> flux-system/.yamllint.yml
+          echo "  indentation: disable" >> flux-system/.yamllint.yml
+          echo "  key-ordering:" >> flux-system/.yamllint.yml
+          echo "    level: warning" >> flux-system/.yamllint.yml
+          echo "  empty-lines:" >> flux-system/.yamllint.yml
+          echo "    level: warning" >> flux-system/.yamllint.yml
 
       - name: Lint YAML files
-        run: yamllint -c flux-system/yamllint.yml clusters/geolocview-cluster-1
+        run: yamllint -c flux-system/.yamllint.yml clusters/geolocview-cluster-1
 
 
 
