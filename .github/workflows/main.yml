@@ -46,7 +46,6 @@ jobs:
         kubectl apply -f frontend/geolocview/frontend-service.yaml
 
 
-
     - name: Deploy Frontend ingress to GKE
       run: |
         kubectl apply -f frontend/geolocview/ingress.yaml
