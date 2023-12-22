@@ -19,4 +19,4 @@ spec:
       - name: backend
         image: gcr.io/third-nature-400716/backend:a165652587b60fdc254e2b57be79f914a60c79aa
         ports:
-        - containerPort: 8080 # Replace with your backend container's port
+        - containerPort: 8080
