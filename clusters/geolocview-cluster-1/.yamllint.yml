@@ -1,8 +1,1 @@
-extends: default
-rules:
-  line-length: disable
-  indentation: disable
-  key-ordering:
-    level: warning
-  empty-lines:
-    level: warning
+
